@@ -42,14 +42,11 @@ def destroy(p, pcb):
             destroy(pcb[y], pcb)
         y -= 1
 
+    # prints out what is going to be deleted
     if p[1] is not None:
         print("Process [", p[0], "] is deleted from process [", p[1], "]")
     else:
         print("Process [", p[0], "] is deleted")
-
-    if len(pcb) == 0:
-        return []
-
 
     # rearranges the siblings
     y = 0
@@ -73,13 +70,13 @@ def destroy(p, pcb):
         elif p[3] is not None:
             pcb[olderSib][2] = None
 
-    theIndex = p[0]-1
-
+    #delete the process from the array
     pcb.remove(p)
     return pcb
 
 
 def restoreIndexes(pcb):
+    # corrects the indices so destroy and create can be used again
     for x in range(len(pcb)):
         if x != pcb[x][0]:
             before = pcb[x][0]
